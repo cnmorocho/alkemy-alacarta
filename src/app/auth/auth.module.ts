@@ -15,6 +15,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     CommonModule,
     ReactiveFormsModule,
     FormsModule
-  ]
+  ],
+  exports: [LoginFormComponent]
 })
 export class AuthModule { }

@@ -1,1 +1,7 @@
-<p>login-form works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+  <label for="user-email">Email</label>
+  <input formControlName="userEmail" name="userEmail" type="email" />
+  <label for="user-password">Password</label>
+  <input formControlName="userPassword" name="user-password" type="password" />
+  <button type="submit">Login</button>
+</form>
