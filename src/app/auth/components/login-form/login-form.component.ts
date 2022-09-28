@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { AuthService } from '../../services/auth.service';
+import "../../interfaces/UserCredential.interface";
+import { UserCredential } from '../../interfaces/UserCredential.interface';
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -10,7 +14,7 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -24,12 +28,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   handleSubmit(): void {
-    const {userEmail, userPassword} = this.loginForm.value;
-    const errors = this.loginForm.get('userEmail')?.errors; 
-    console.log(errors);
-
-    if(errors )
-    alert(`El usuario con email ${userEmail} ha sido logueado!`);
+    const userData: UserCredential = this.loginForm.value;
+    this.authService.login(userData);
   }
 
 }
