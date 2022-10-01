@@ -22,14 +22,14 @@ export class LoginFormComponent implements OnInit {
 
   initForm(): void {
     this.loginForm = new FormGroup({
-      userEmail: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      userPassword: new FormControl('', Validators.required)
+      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      password: new FormControl('', Validators.required)
     });
   }
 
   handleSubmit(): void {
     const userData: UserCredential = this.loginForm.value;
-    this.authService.login(userData);
+    this.authService.login(userData).subscribe();
   }
 
 }
