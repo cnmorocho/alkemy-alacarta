@@ -28,6 +28,10 @@ export class AuthService {
     return localStorage.getItem('token') != null ? true : false;
   }
 
+  public getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
   private saveToken(token: LoginResponse) {
     localStorage.setItem('token', token.token);
   }
