@@ -6,20 +6,20 @@ import { FoodService } from '../../services/food.service';
 @Component({
   selector: 'app-menu-item',
   templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.scss']
+  styleUrls: ['./menu-item.component.scss'],
 })
 export class MenuItemComponent implements OnInit {
+  @Input() item!: Food;
+  menu: Food[];
 
-  @Input() item: Food | undefined;
-  
-  constructor(private foodService: FoodService) { 
+  constructor(public foodService: FoodService) {
+    this.menu = [];
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  // TODO: Poder agregar un item a una lista
   addItem() {
-    this.foodService.addToMenu(this.item)
+    this.foodService.addToMenu(this.item);
   }
-
 }

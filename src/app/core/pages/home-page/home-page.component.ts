@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { FoodService } from '../../services/food.service';
 import { Food } from '../../models/ResponseApi.interface';
@@ -6,19 +6,19 @@ import { Food } from '../../models/ResponseApi.interface';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
+  menu: Food[] = [];
 
-  menu: Array<Food>; 
-
-  constructor(private foodService: FoodService) { 
-    this.menu = [];
-  }
+  constructor(private foodService: FoodService) {}
 
   ngOnInit(): void {
-    this.menu = this.foodService.getMenu()
+    this.addToMenu();
+    console.log(this.menu);
   }
 
-
+  addToMenu() {
+    this.menu = this.foodService.getMenu();
+  }
 }
