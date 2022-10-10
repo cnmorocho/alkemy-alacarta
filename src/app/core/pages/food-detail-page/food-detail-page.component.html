@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<div *ngIf="food; else loading" class="container">
+  <h1>{{ food.title }}</h1>
+  <img class="rounded img-thumbnail" [src]="food.image" alt="" />
+  <h3>Descripción</h3>
+  <p>Preparación: {{ food.readyInMinutes }} minutos</p>
+  <a [href]="food.sourceUrl">Más información</a>
+  <p>{{ food.summary }}</p>
+</div>
+
+<ng-template #loading>
+  <p class="position-absolute top-50 start-50 translate-middle fs-3 fw-bold">
+    Cargando...
+  </p>
+</ng-template>

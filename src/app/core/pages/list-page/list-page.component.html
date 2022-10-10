@@ -1,6 +1,6 @@
+<app-navbar></app-navbar>
 <div class="container">
   <h1>Buscar comida</h1>
-  <a [routerLink]="['/']">Volver al inicio</a>
   <app-search-bar (searchEmmiter)="handleSearch($event)"></app-search-bar>
   <div *ngFor="let item of foodList; let index">
     <app-menu-item [item]="item"></app-menu-item>

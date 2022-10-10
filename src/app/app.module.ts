@@ -11,6 +11,8 @@ import { MenuItemComponent } from './core/components/menu-item/menu-item.compone
 import { HomePageComponent } from './core/pages/home-page/home-page.component';
 import { ListPageComponent } from './core/pages/list-page/list-page.component';
 import { SearchBarComponent } from './core/components/search-bar/search-bar.component';
+import { FoodDetailPageComponent } from './core/pages/food-detail-page/food-detail-page.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { SearchBarComponent } from './core/components/search-bar/search-bar.comp
     MenuItemComponent,
     HomePageComponent,
     ListPageComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    FoodDetailPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,9 +29,10 @@ import { SearchBarComponent } from './core/components/search-bar/search-bar.comp
     AuthModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

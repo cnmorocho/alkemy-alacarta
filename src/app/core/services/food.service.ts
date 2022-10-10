@@ -11,33 +11,34 @@ import { Food } from '../models/ResponseApi.interface';
   providedIn: 'root',
 })
 export class FoodService {
-  private url: string = 'https://api.spoonacular.com/recipes/complexSearch';
-
-  @Output()
-  public foodEmitter: EventEmitter<Food>;
-
+  private url: string = 'https://api.spoonacular.com/recipes';
   menu: Food[] = [];
 
   // ! Luego usar el api key proporcionado por el AuthService
   private token: string = '5f66ee2aeff844a8b3afb81a230c1e7d';
 
-  constructor(private http: HttpClient) {
-    this.foodEmitter = new EventEmitter<Food>();
-  }
+  constructor(private http: HttpClient) {}
 
   public searchFood(searchQuery: string): Observable<Food[]> {
     return this.http
       .get<Response>(
-        `${this.url}?apiKey=${this.token}&query=${searchQuery}&number=5&addRecipeInformation=true`
+        `${this.url}/complexSearch?apiKey=${this.token}&query=${searchQuery}&number=5&addRecipeInformation=true`
       )
       .pipe(map((res: Response) => res.results));
   }
 
+  public findById(id: number): Observable<Food> {
+    return this.http.get<Food>(
+      `${this.url}/${id}/information?apiKey=${this.token}`
+    );
+  }
+
   // TODO: Comprobar que hallan al menos 2 platos veganos
   public addToMenu(food: Food) {
-    if (this.menu.length <= 4) {
-      this.menu.push(food);
-    }
+    if (this.menu.length <= 3 && food.vegan) {
+      const veganPlates = this.menu.filter((foodOnMenu) => foodOnMenu.vegan);
+      if (veganPlates.length <= 1) this.menu.push(food);
+    } else if (this.menu.length <= 3) this.menu.push(food);
   }
 
   public removeFromMenu(id: number) {

@@ -1,7 +1,38 @@
-<form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+<!-- <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
   <label for="user-email">Email</label>
   <input formControlName="email" name="userEmail" type="email" />
   <label for="user-password">Password</label>
   <input formControlName="password" name="user-password" type="password" />
   <button type="submit">Login</button>
 </form>
+ -->
+<div class="container d-flex justify-content-center vh-100 align-items-center">
+  <form
+    class="w-25 d-flex flex-column gap-2"
+    [formGroup]="loginForm"
+    (ngSubmit)="handleSubmit()"
+  >
+    <h2>Identificate</h2>
+    <div class="form-floating">
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="floatingInput"
+        placeholder="name@example.com"
+      />
+      <label for="floatingInput">Email</label>
+    </div>
+    <div class="form-floating">
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
+      />
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+    <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+  </form>
+</div>

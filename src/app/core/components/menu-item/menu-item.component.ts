@@ -16,10 +16,17 @@ export class MenuItemComponent implements OnInit {
     this.menu = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.item.id);
+  }
 
   // TODO: Poder agregar un item a una lista
   addItem() {
     this.foodService.addToMenu(this.item);
+  }
+
+  isVegan(): string {
+    if (this.item.vegan) return 'Vegano';
+    else return 'No Vegano';
   }
 }

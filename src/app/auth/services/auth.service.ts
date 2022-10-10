@@ -6,18 +6,20 @@ import { UserCredential } from '../interfaces/UserCredential.interface';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public login(userCredentials: UserCredential): Observable<any> {
-    return this.http.post('http://challenge-react.alkemy.org/', userCredentials).pipe(
-      map((res: any) => {
-        this.saveToken(res);
-      })
-    )
+    return this.http
+      .post('http://challenge-react.alkemy.org/', userCredentials)
+      .pipe(
+        map((res: any) => {
+          this.saveToken(res);
+          return res;
+        })
+      );
   }
 
   /* private handleError(error) {
@@ -39,5 +41,4 @@ export class AuthService {
   public logout() {
     localStorage.removeItem('token');
   }
-
 }
