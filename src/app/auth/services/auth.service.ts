@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { LoginResponse } from '../interfaces/LoginResponse.interface';
+import {
+  ErrorResponse,
+  LoginResponse,
+} from '../interfaces/LoginResponse.interface';
 import { UserCredential } from '../interfaces/UserCredential.interface';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +22,12 @@ export class AuthService {
         map((res: any) => {
           this.saveToken(res);
           return res;
+        }),
+        catchError((err: ErrorResponse) => {
+          return throwError(() => new Error('¡Credenciales incorrectas!'));
         })
       );
   }
-
-  /* private handleError(error) {
-
-  } */
 
   public isLogged(): boolean {
     return localStorage.getItem('token') != null ? true : false;

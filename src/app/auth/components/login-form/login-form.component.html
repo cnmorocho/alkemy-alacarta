@@ -6,9 +6,9 @@
   <button type="submit">Login</button>
 </form>
  -->
-<div class="container d-flex justify-content-center vh-100 align-items-center">
+<div class="container d-flex justify-content-center vh-100">
   <form
-    class="w-25 d-flex flex-column gap-2"
+    class="w-25 d-flex flex-column gap-2 h-50 justify-content-center"
     [formGroup]="loginForm"
     (ngSubmit)="handleSubmit()"
   >
@@ -33,6 +33,15 @@
       />
       <label for="floatingPassword">Contraseña</label>
     </div>
-    <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+    <ng-container *ngIf="loginForm.dirty && loginForm.invalid">
+      <p class="text-danger">*Se necesitan rellenar todos los campos</p>
+    </ng-container>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [ngClass]="loginForm.invalid ? 'disabled' : 'able'"
+    >
+      Iniciar sesión
+    </button>
   </form>
 </div>

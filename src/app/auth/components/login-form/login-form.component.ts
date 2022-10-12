@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth.service';
 import '../../interfaces/UserCredential.interface';
 import { UserCredential } from '../../interfaces/UserCredential.interface';
 import { Router } from '@angular/router';
+import { ErrorResponse } from '../../interfaces/LoginResponse.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-form',
@@ -32,9 +34,17 @@ export class LoginFormComponent implements OnInit {
 
   handleSubmit(): void {
     const userData: UserCredential = this.loginForm.value;
-    this.authService.login(userData).subscribe((res) => {
-      if (res.error) alert('Credenciales invalidas');
-      this.router.navigate(['/']);
-    });
+    this.authService.login(userData).subscribe(
+      () => {
+        this.router.navigate(['/']);
+      },
+      (error: string) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error,
+        });
+      }
+    );
   }
 }
