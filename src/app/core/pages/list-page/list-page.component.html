@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <h1>Buscar comida</h1>
+<div class="container py-3 vh-100">
+  <h1 class="my-3">Buscar comida</h1>
   <app-search-bar (searchEmmiter)="handleSearch($event)"></app-search-bar>
   <div *ngFor="let item of foodList; let index">
-    <app-menu-item [item]="item"></app-menu-item>
+    <app-list-item [item]="item"></app-list-item>
   </div>
 </div>
