@@ -1,13 +1,25 @@
 <app-navbar></app-navbar>
 <div class="container pt-5 w">
   <h1 class="text-center">A la Carta</h1>
-  <h3>Mi menú</h3>
-  <ng-container *ngIf="menu.length > 0; else templateEmpty">
-    <div *ngFor="let food of menu">
-      <h4>{{ food.title }}</h4>
-      <img src="{{ food.image }}" alt="" />
+  <h2>Mi menú</h2>
+  <ng-container
+    class="d-flex flex-row"
+    *ngIf="menu.getItems.length; else templateEmpty"
+  >
+    <div class="d-flex gap-1 flex-wrap my-3">
+      <app-menu-item
+        *ngFor="let food of menu.getItems"
+        [item]="food"
+      ></app-menu-item>
+    </div>
+    <div class="row">
+      <h5>Precio total: {{ menu.totalPrice() | currency }}</h5>
+    </div>
+    <div class="row">
+      <h5>Health Score: {{ menu.healthScore() }}</h5>
     </div>
   </ng-container>
+
   <ng-template #templateEmpty>
     <p class="text-body">
       No se ha agregado ningun plato al menú.

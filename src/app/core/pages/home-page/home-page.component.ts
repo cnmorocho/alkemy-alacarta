@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { FoodService } from '../../services/food.service';
 import { Food } from '../../models/ResponseApi.interface';
+import { Menu } from '../../models/Menu';
 
 @Component({
   selector: 'app-home-page',
@@ -9,16 +10,12 @@ import { Food } from '../../models/ResponseApi.interface';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  menu: Food[] = [];
+  menu: Menu = new Menu();
+  totalPrice: number = 0;
 
   constructor(private foodService: FoodService) {}
 
   ngOnInit(): void {
-    this.addToMenu();
-    console.log(this.menu);
-  }
-
-  addToMenu() {
     this.menu = this.foodService.getMenu();
   }
 }
