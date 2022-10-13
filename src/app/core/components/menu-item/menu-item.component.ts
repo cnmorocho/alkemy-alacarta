@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { Food } from '../../models/ResponseApi.interface';
 import { FoodService } from '../../services/food.service';
 
@@ -10,23 +9,12 @@ import { FoodService } from '../../services/food.service';
 })
 export class MenuItemComponent implements OnInit {
   @Input() item!: Food;
-  menu: Food[];
 
-  constructor(public foodService: FoodService) {
-    this.menu = [];
-  }
+  constructor(private foodService: FoodService) {}
 
-  ngOnInit(): void {
-    console.log(this.item.id);
-  }
+  ngOnInit(): void {}
 
-  // TODO: Poder agregar un item a una lista
-  addItem() {
-    this.foodService.addToMenu(this.item);
-  }
-
-  isVegan(): string {
-    if (this.item.vegan) return 'Vegano';
-    else return 'No Vegano';
+  removeItem(): void {
+    this.foodService.removeFromMenu(this.item.id);
   }
 }

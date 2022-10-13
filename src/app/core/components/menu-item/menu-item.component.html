@@ -1,16 +1,11 @@
-<div class="card mb-3" style="max-width: 540px">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{ item.image }}" class="img-fluid rounded-start" alt="..." />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <a [routerLink]="['/detail', item.id]"
-          ><h5 class="card-title">{{ item.title }}</h5></a
-        >
-        <p>{{ isVegan() }}</p>
-        <button class="btn-primary" (click)="addItem()">Añadir</button>
-      </div>
-    </div>
+<div class="card" style="width: 18rem">
+  <img [src]="item.image" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">{{ item.title }}</h5>
+    <p class="fs-5 fw-bold">{{ item.pricePerServing | currency }}</p>
+    <a [routerLink]="['/detail', item.id]" class="btn btn-secondary me-1"
+      >Ver detalles</a
+    >
+    <button class="btn btn-danger" (click)="removeItem()">Eliminar</button>
   </div>
 </div>
