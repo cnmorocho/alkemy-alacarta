@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark .bg-gradient">
   <div class="container-fluid">
     <a
-      class="navbar-brand"
+      class="navbar-brand text-light"
       style="
         font-family: 'Parisienne', cursive;
         font-weight: 600;
@@ -25,16 +25,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/']"
+          <a
+            class="nav-link text-light"
+            aria-current="page"
+            [routerLink]="['/']"
             >Inicio</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/list']">Buscar</a>
+          <a class="nav-link text-light" [routerLink]="['/list']">Buscar</a>
         </li>
         <li class="nav-item">
           <a
-            class="nav-link"
+            class="nav-link text-light"
             aria-current="page"
             (click)="logout()"
             role="button"
