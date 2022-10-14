@@ -14,6 +14,7 @@ import { SearchBarComponent } from './core/components/search-bar/search-bar.comp
 import { FoodDetailPageComponent } from './core/pages/food-detail-page/food-detail-page.component';
 import { SharedModule } from './shared/shared.module';
 import { MenuItemComponent } from './core/components/menu-item/menu-item.component';
+import { NgDompurifyModule } from '@tinkoff/ng-dompurify';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MenuItemComponent } from './core/components/menu-item/menu-item.compone
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    NgDompurifyModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
