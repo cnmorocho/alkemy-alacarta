@@ -1,15 +1,47 @@
 <app-navbar></app-navbar>
-<div *ngIf="food; else loading" class="container">
-  <h1>{{ food.title }}</h1>
-  <img class="rounded img-thumbnail" [src]="food.image" alt="" />
-  <h3>Descripción</h3>
-  <p>Preparación: {{ food.readyInMinutes }} minutos</p>
-  <a [href]="food.sourceUrl">Más información</a>
-  <p>{{ food.summary }}</p>
-</div>
+<ng-container *ngIf="food; else loading">
+  <div class="container mt-5">
+    <div class="row w-100">
+      <div class="col-5">
+        <img class="rounded-5 img-fluid" [src]="food.image" alt="" />
+      </div>
+      <div class="col-7 bg-dark rounded-5 p-4">
+        <div class="mb-3">
+          <h1 class="fs-1 fw-bolder text-white">{{ food.title }}</h1>
+        </div>
+        <div class="mb-3">
+          <h3 class="fs-2 text-white">{{ food.pricePerServing | currency }}</h3>
+        </div>
+        <div>
+          <h3 class="fs-4 fw-semibold text-white">Caracteristicas</h3>
+          <p class="fs-6">
+            <span class="fw-bolder text-white">Tiempo de preparación:</span>
+            {{ food.readyInMinutes }} minutos
+          </p>
+          <p class="fs-6 text-white">
+            <span class="fw-bolder">Health Score:</span>
+            {{ food.healthScore }} puntos
+          </p>
+          <h3 class="fs-4 fw-semibold text-white">Descripción</h3>
+          <div
+            class="mb-2 text-white"
+            [innerHtml]="food.summary | dompurify"
+          ></div>
+          <a class="btn btn-warning" [href]="food.sourceUrl">Más información</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
 
 <ng-template #loading>
-  <p class="position-absolute top-50 start-50 translate-middle fs-3 fw-bold">
-    Cargando...
-  </p>
+  <div class="container">
+    <div class="row w-25 justify-content-center">
+      <img
+        src="../../../../assets/images/undraw_loading_re_5axr.svg"
+        class="img-fluid"
+        alt=""
+      />
+    </div>
+  </div>
 </ng-template>

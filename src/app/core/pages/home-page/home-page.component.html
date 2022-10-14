@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
-<div class="container pt-5 w">
-  <h1 class="text-center">A la Carta</h1>
-  <h2>Mi menú</h2>
+<div class="container pt-5">
+  <h1 class="text-center mb-5">A la Carta</h1>
+  <h2 class="mb-4 fs-1 text-center">Mi menú</h2>
   <ng-container
     class="d-flex flex-row"
     *ngIf="menu.getItems.length; else templateEmpty"
   >
-    <div class="d-flex gap-1 flex-wrap my-3">
+    <div class="d-flex gap-1 flex-wrap my-3 justify-content-center">
       <app-menu-item
         *ngFor="let food of menu.getItems"
         [item]="food"
@@ -21,11 +21,26 @@
   </ng-container>
 
   <ng-template #templateEmpty>
-    <p class="text-body">
+    <!-- <p class="text-body">
       No se ha agregado ningun plato al menú.
       <a [routerLink]="['/list']"
         >Haz click aquí para buscar tus platos favoritos</a
       >
-    </p>
+    </p> -->
+    <div class="row w-100 mt-5 justify-content-center">
+      <div class="col-3 bg-danger rounded-start">
+        <img
+          class="img-fluid rounded-4"
+          src="../../../../assets/images/undraw_empty_cart_co35.svg"
+        />
+      </div>
+
+      <div class="col-3 d-flex align-items-center bg-dark rounded-end">
+        <p class="fs-3 fw-bolder text-white text-start">
+          ¿Todavía no has escogido ningun plato? <br />
+          <a class="text-white" [routerLink]="['/list']">¡Haz clic aquí!</a>
+        </p>
+      </div>
+    </div>
   </ng-template>
 </div>

@@ -1,9 +1,14 @@
-<div class="card" style="width: 18rem">
+<div class="card rounded-3" style="width: 18rem">
   <img [src]="item.image" class="card-img-top" alt="..." />
-  <div class="card-body">
-    <h5 class="card-title">{{ item.title }}</h5>
-    <p class="fs-5 fw-bold">{{ item.pricePerServing | currency }}</p>
-    <a [routerLink]="['/detail', item.id]" class="btn btn-secondary me-1"
+  <div class="card-body bg-dark">
+    <h5 class="card-title text-white">{{ item.title }}</h5>
+    <p class="fs-5 fw-bold text-white">{{ item.pricePerServing | currency }}</p>
+    <p
+      class="card-text text-white mh-25"
+      [innerHtml]="item.summary"
+      style="text-overflow: ellipsis"
+    ></p>
+    <a [routerLink]="['/detail', item.id]" class="btn btn-warning me-1"
       >Ver detalles</a
     >
     <button class="btn btn-danger" (click)="removeItem()">Eliminar</button>

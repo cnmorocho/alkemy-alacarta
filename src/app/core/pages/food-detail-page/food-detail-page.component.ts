@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FoodDetails } from '../../models/FoodDetails.interface';
 import { Food } from '../../models/ResponseApi.interface';
 import { FoodService } from '../../services/food.service';
 
@@ -10,7 +11,7 @@ import { FoodService } from '../../services/food.service';
 })
 export class FoodDetailPageComponent implements OnInit {
   foodId!: number;
-  food: Food | undefined;
+  food: FoodDetails | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +24,7 @@ export class FoodDetailPageComponent implements OnInit {
 
   getData() {
     this.foodId = this.route.snapshot.params['id'];
-    this.foodService.findById(this.foodId).subscribe((res: Food) => {
+    this.foodService.findById(this.foodId).subscribe((res: FoodDetails) => {
       this.food = res;
     });
   }
