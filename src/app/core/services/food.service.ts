@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { Response } from '../models/ResponseApi.interface';
 import { Food } from '../models/ResponseApi.interface';
 import { Menu } from '../models/Menu';
+import { FoodDetails } from '../models/FoodDetails.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -28,8 +29,8 @@ export class FoodService {
       .pipe(map((res: Response) => res.results));
   }
 
-  public findById(id: number): Observable<Food> {
-    return this.http.get<Food>(
+  public findById(id: number): Observable<FoodDetails> {
+    return this.http.get<FoodDetails>(
       `${this.url}/${id}/information?apiKey=${this.token}`
     );
   }
